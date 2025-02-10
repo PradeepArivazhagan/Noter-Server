@@ -16,11 +16,13 @@ app.use("/", router);
 
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(
+  .then(() => {
     app.listen(port, () => {
-      console.log(`Mongo DB is Connected and Server is running on port ${port}`);
-    })
-  )
+      console.log(
+        `Mongo DB is Connected and Server is running on port ${port}`
+      );
+    });
+  })
   .catch((error) => {
     console.error(error.message);
     process.exit(1);
